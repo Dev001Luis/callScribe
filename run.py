@@ -7,7 +7,7 @@ from app import create_app, socketio
 #    We use socketio.run() instead of app.run() because SocketIO
 #    needs to wrap the server to handle WebSocket upgrades.
 
-flask_app = create_app()
+app = create_app()
 
 # 🎓 WHY import socket_events HERE and not inside create_app()?
 #    socket_events.py uses @socketio.on(...) decorators. Python runs
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     threading.Thread(target=preload_whisper, daemon=True).start()
 
     socketio.run(
-        flask_app,
+        app,
         host="0.0.0.0",  # 0.0.0.0 = accessible from other devices on LAN
         port=5000,
         debug=False,  # 🎓 debug=False avoids the reloader forking the process

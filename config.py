@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Config:
     # ── Flask ──────────────────────────────────
-    SECRET_KEY = os.environ.get("SECRET_KEY", "callscribe-dev-secret-change-in-prod")
+    SECRET_KEY = os.environ.get("SECRET_KEY", "super_secret")
     DEBUG = True
 
     # ── Recordings ────────────────────────────
