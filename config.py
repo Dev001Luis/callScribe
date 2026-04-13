@@ -55,4 +55,4 @@ class Config:
     # ── SocketIO ──────────────────────────────
     # 🎓 "threading" mode works on Windows without extra setup.
     #    "eventlet" or "gevent" are faster but need extra packages.
-    SOCKETIO_ASYNC_MODE = "threading"
+    SOCKETIO_ASYNC_MODE = "eventlet"

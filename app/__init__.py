@@ -28,6 +28,10 @@ def create_app():
         flask_app,
         cors_allowed_origins="*",
         async_mode=flask_app.config["SOCKETIO_ASYNC_MODE"],
+        max_http_buffer_size=10 * 1024 * 1024,  # Allow 10MB of data in the queue
+        ping_timeout=120,  # Be VERY patient with the connection
+        ping_interval=25,  # Check if phone is alive every 25s
+        manage_session=False,  # Slightly lighter for the CPU
     )
 
     # Register routes (HTTP endpoints like / and /save)
