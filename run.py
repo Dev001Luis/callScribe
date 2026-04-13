@@ -1,3 +1,7 @@
+import eventlet
+
+eventlet.monkey_patch()
+
 import threading
 from app import create_app, socketio
 
