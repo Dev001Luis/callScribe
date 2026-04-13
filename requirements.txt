@@ -1,0 +1,33 @@
+# CallScribe — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Web framework ──────────────────────────────────────
+flask==3.0.3
+flask-socketio==5.3.6
+
+# ── WebSocket server (works well on Windows) ──────────
+simple-websocket==1.0.0
+
+# ── Audio processing ───────────────────────────────────
+numpy==1.26.4
+sounddevice==0.4.7       # optional: server-side mic (not needed if browser-only)
+
+# ── Transcription (free, local) ────────────────────────
+# faster-whisper is a CTranslate2-powered reimplementation of Whisper
+# It's 4x faster than openai-whisper and uses less memory
+faster-whisper==1.0.3
+
+requests
+
+faster-whisper
+
+gunicorn==22.0.0
+eventlet==0.36.1
+
+# ── Speaker diarization (optional, free) ───────────────
+# Uncomment these after you get a HuggingFace token
+# and accept the model license at:
+# https://huggingface.co/pyannote/speaker-diarization-3.1
+#
+# pyannote.audio==3.3.2
+# torch==2.3.0            # CPU-only torch is fine

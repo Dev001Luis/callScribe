@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>CallScribe</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+
+<body>
+
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header>
+    <div class="logo">🎙️ CallScribe</div>
+    <div class="status-badge" id="status-badge">Disconnected</div>
+  </header>
+
+  <!-- ── Main layout ──────────────────────────────────── -->
+  <main>
+
+    <!-- LEFT: controls + live transcript -->
+    <section class="panel panel-left">
+
+      <!-- Recording controls -->
+      <div class="controls-card">
+        <div class="timer-display" id="timer">00:00</div>
+        <div class="visualiser-bar" id="visualiser">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btn-start">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="5" fill="white" />
+            </svg>
+            Start
+          </button>
+          <button class="btn btn-warning" id="btn-pause" disabled>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
+            Pause
+          </button>
+          <button class="btn btn-success" id="btn-end" disabled>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <rect x="4" y="4" width="16" height="16" />
+            </svg>
+            End
+          </button>
+          <button class="btn btn-danger" id="btn-delete" disabled>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14H6L5 6" />
+              <path d="M10 11v6M14 11v6" />
+            </svg>
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <!-- Live transcript -->
+      <div class="transcript-card">
+        <div class="transcript-header">
+          <span>Live Transcript</span>
+          <span class="seg-count" id="seg-count">0 segments</span>
+        </div>
+        <div class="transcript-body" id="transcript-body">
+          <p class="placeholder">Transcript will appear here as you speak…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: session history -->
+    <section class="panel panel-right">
+      <div class="history-card">
+        <div class="history-header">
+          <span>📁 Saved Sessions</span>
+          <button class="btn-icon" id="btn-refresh" title="Refresh">↻</button>
+        </div>
+        <ul class="session-list" id="session-list">
+          <li class="placeholder">No sessions yet</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Save modal ────────────────────────────────────── -->
+  <div class="modal-overlay" id="save-modal" hidden>
+    <div class="modal">
+      <h2>💾 Save Session</h2>
+      <p>Give this session a name (leave blank for auto-name):</p>
+      <input type="text" id="save-name" placeholder="e.g. recruiter-call-google" maxlength="80" />
+      <div class="modal-actions">
+        <button class="btn btn-success" id="btn-confirm-save">Save</button>
+        <button class="btn btn-ghost" id="btn-cancel-save">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Transcript viewer modal ───────────────────────── -->
+  <div class="modal-overlay" id="view-modal" hidden>
+    <div class="modal modal-wide">
+      <h2 id="view-modal-title">Transcript</h2>
+      <div class="transcript-body view-body" id="view-modal-body"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-close-view">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast notifications ───────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ── Socket.IO client (served by Flask-SocketIO) ────── -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/js/recorder.js"></script>
+</body>
+
+</html>
