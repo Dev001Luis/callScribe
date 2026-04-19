@@ -39,12 +39,6 @@ Open http://localhost:5000 in Chrome or Edge.
    set HF_TOKEN=hf_yourTokenHere
    python run.py
    ```
-5. Uncomment the pyannote lines in requirements.txt and re-run pip install.
-
-## Git — remember to commit!
-```
-git init
-git add .
-git commit -m "feat: initial CallScribe scaffold with live transcription"
+5. Uncomment the pyannote lines in requirements.txt and re-run pip install
 ```
 # callScribe
